@@ -57,7 +57,7 @@ const MapComponent = () => {
       layers: [
         new TileLayer({
           source: new XYZ({
-            url: "https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/mapabase_topo@EPSG%3A3857@png/{z}/{x}/{-y}.png",
+            url: "https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/argenmap_oscuro@EPSG%3A3857@png/{z}/{x}/{-y}.png",
           }),
         }),
       ],
@@ -76,7 +76,7 @@ const MapComponent = () => {
       initialMap.addLayer(
         new VectorLayer({
           source: vectorSource,
-          style: approachStyle,
+          style: departureStyle,
         })
       );
     });
