@@ -6,13 +6,11 @@ const UploadComponent = () => {
   const [file, setFile] = useState<File | null>();
   const [uploadError, setUploadError] = useState(false);
   const [hasUploaded, setHasUploaded] = useState(false);
-  const supabaseKey =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRsaHh5ZXJya2tkaGJpY21zaHRhIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY3MDAwMjg2MywiZXhwIjoxOTg1NTc4ODYzfQ.b9bkXXAtLr3XSCZ0xxThucx3S4_yGZkCmM5QATRiEMY";
 
   // Supabase Init
   const supabaseClient = createClient(
-    "https://tlhxyerrkkdhbicmshta.supabase.co",
-    supabaseKey
+    process.env.apiURL!,
+    process.env.apiServiceKey!
   );
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,10 +31,9 @@ const UploadComponent = () => {
       console.log(error);
       setFile(null);
     }
-    if (data) {
-      setHasUploaded(true);
-      setFile(null);
-    }
+
+    setHasUploaded(true);
+    setFile(null);
   };
   return (
     <section className="flex flex-col">
