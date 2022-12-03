@@ -15,7 +15,6 @@ import {
   centerSyle,
 } from "../../tools/MapTools";
 import { createClient } from "@supabase/supabase-js";
-import { DragAndDrop, defaults as defaultInteractions } from "ol/interaction";
 
 const MapComponent = () => {
   const [ready, setReady] = useState(false);
