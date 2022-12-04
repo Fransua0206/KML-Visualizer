@@ -6,3 +6,6 @@ The app uses [Next.js 13](https://nextjs.org), [OpenLayers](https://openlayers.o
 
 ### Future
 Currently in order to visualize a shape it has to be hard-corded into the Map.tsx component but I'm working in a way of importing the file once inside the app and adding basic controls for that file (remove).
+
+## Test It
+Feel free to try it by uploading a KML file with a route or polygon in it. You can then delete it from the management panel.
