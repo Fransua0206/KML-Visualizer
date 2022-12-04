@@ -43,8 +43,8 @@ const ItemList = ({ item }: ItemProps) => {
     process.env.apiServiceKey!
   );
 
-  const deleteFile = (file: string) => {
-    supabaseClient.storage.from("kml").remove(Array(file));
+  const deleteFile = async (file: string) => {
+    await supabaseClient.storage.from("kml").remove(Array(file));
     window.location.reload()
   };
   return (
