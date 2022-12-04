@@ -91,8 +91,4 @@ const MapComponent = () => {
   );
 };
 
-export const getServerSideProps = () => {
-  console.log("Runinng sv props");
-};
-
 export default MapComponent;
