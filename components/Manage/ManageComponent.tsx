@@ -8,6 +8,7 @@ const ManageComponent = () => {
     process.env.apiServiceKey!
   );
   const [foundFiles, setFoundFiles] = useState<string[]>([]);
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
     const getData = async () => {
@@ -19,17 +20,22 @@ const ManageComponent = () => {
           foundFiles.push(file.name);
         }
       });
+      setReady(true);
     };
 
     getData();
   }, []);
   return (
-    <div className="flex flex-col ml-2">
-      <h1 className="font-semibold text-2xl mb-2">Manage Remote Files</h1>
-      {foundFiles.map((file, index) => {
-        return <ItemList key={index} item={file} />;
-      })}
-    </div>
+    <>
+      {(ready && (
+        <div className="flex flex-col ml-2">
+          <h1 className="font-semibold text-2xl mb-2">Manage Remote Files</h1>
+          {foundFiles.map((file, index) => {
+            return <ItemList key={index} item={file} />;
+          })}
+        </div>
+      )) || <h1>Cargando</h1>}
+    </>
   );
 };
 
@@ -45,7 +51,7 @@ const ItemList = ({ item }: ItemProps) => {
 
   const deleteFile = async (file: string) => {
     await supabaseClient.storage.from("kml").remove(Array(file));
-    window.location.reload()
+    window.location.reload();
   };
   return (
     <div className="flex flex-row items-center justify-start mt-5">
