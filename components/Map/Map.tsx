@@ -75,7 +75,7 @@ const MapComponent = () => {
       initialMap.addLayer(
         new VectorLayer({
           source: vectorSource,
-          style: departureStyle,
+          style: towerStyle,
         })
       );
     });
