@@ -10,6 +10,25 @@ const ManageComponent = () => {
   const [foundFiles, setFoundFiles] = useState<string[]>([]);
   const [ready, setReady] = useState(false);
 
+  const availableColors = [
+    {
+      tag: "Red",
+      value: "RED",
+    },
+    {
+      tag: "Blue",
+      value: "BLUE",
+    },
+    {
+      tag: "Pink",
+      value: "PINK"
+    },
+    {
+      tag: "Grey",
+      value: "GREY"
+    }
+  ];
+
   useEffect(() => {
     const getData = async () => {
       console.log("Running getData");
@@ -25,16 +44,37 @@ const ManageComponent = () => {
 
     getData();
   }, []);
+
+  const setShapeColor = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    window.localStorage.setItem('shape-color', e.target.value)
+  };
   return (
     <>
-      {(ready && (
-        <div className="flex flex-col ml-2">
-          <h1 className="font-semibold text-2xl mb-2">Manage Remote Files</h1>
-          {foundFiles.map((file, index) => {
-            return <ItemList key={index} item={file} />;
-          })}
+      <div className="flex flex-row">
+        {/* Remote file manager */}
+        {(ready && (
+          <div className="flex flex-col ml-2">
+            <h1 className="font-semibold text-2xl mb-2">Manage Remote Files</h1>
+            {foundFiles.map((file, index) => {
+              return <ItemList key={index} item={file} />;
+            })}
+          </div>
+        )) || <h1>Cargando</h1>}
+        {/* Shape color Selector */}
+        <div className="flex flex-col ml-10 w-52 h-20">
+          <h1 className="font-semibold text-2xl mb-2">Shape color selection</h1>
+          <select onChange={setShapeColor} name="Colors">
+            <option value="none" selected disabled hidden>Select an option</option>
+            {availableColors.map((color, index) => {
+              return (
+                <option key={index} value={color.value}>
+                  {color.tag}
+                </option>
+              );
+            })}
+          </select>
         </div>
-      )) || <h1>Cargando</h1>}
+      </div>
     </>
   );
 };
