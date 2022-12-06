@@ -43,7 +43,7 @@ export const getStyle = (feature: any) => {
         }),
       });
       return [pinkStyle];
-    case "GRAY":
+    case "GREY":
       let grayStyle = new Style({
         stroke: new Stroke({
           color: "rgb(123, 154, 175)",
