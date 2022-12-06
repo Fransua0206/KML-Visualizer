@@ -8,6 +8,26 @@ const ManageComponent = () => {
     process.env.apiServiceKey!
   );
   const [foundFiles, setFoundFiles] = useState<string[]>([]);
+  const [ready, setReady] = useState(false);
+
+  const availableColors = [
+    {
+      tag: "Red",
+      value: "RED",
+    },
+    {
+      tag: "Blue",
+      value: "BLUE",
+    },
+    {
+      tag: "Pink",
+      value: "PINK"
+    },
+    {
+      tag: "Grey",
+      value: "GREY"
+    }
+  ];
 
   useEffect(() => {
     const getData = async () => {
@@ -19,17 +39,43 @@ const ManageComponent = () => {
           foundFiles.push(file.name);
         }
       });
+      setReady(true);
     };
 
     getData();
   }, []);
+
+  const setShapeColor = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    window.localStorage.setItem('shape-color', e.target.value)
+  };
   return (
-    <div className="flex flex-col ml-2">
-      <h1 className="font-semibold text-2xl mb-2">Manage Remote Files</h1>
-      {foundFiles.map((file, index) => {
-        return <ItemList key={index} item={file} />;
-      })}
-    </div>
+    <>
+      <div className="flex flex-col md:flex-row">
+        {/* Remote file manager */}
+        {(ready && (
+          <div className="flex flex-col ml-2">
+            <h1 className="font-semibold text-2xl mb-2">Manage Remote Files</h1>
+            {foundFiles.map((file, index) => {
+              return <ItemList key={index} item={file} />;
+            })}
+          </div>
+        )) || <h1>Cargando</h1>}
+        {/* Shape color Selector */}
+        <div className="flex flex-col ml-2 mt-5 w-52 h-20 md:ml-10 md:mt-0">
+          <h1 className="font-semibold text-2xl mb-2">Shape color selection</h1>
+          <select onChange={setShapeColor} name="Colors">
+            <option value="none" selected disabled hidden>Select an option</option>
+            {availableColors.map((color, index) => {
+              return (
+                <option key={index} value={color.value}>
+                  {color.tag}
+                </option>
+              );
+            })}
+          </select>
+        </div>
+      </div>
+    </>
   );
 };
 
@@ -45,7 +91,7 @@ const ItemList = ({ item }: ItemProps) => {
 
   const deleteFile = async (file: string) => {
     await supabaseClient.storage.from("kml").remove(Array(file));
-    window.location.reload()
+    window.location.reload();
   };
   return (
     <div className="flex flex-row items-center justify-start mt-5">

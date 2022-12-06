@@ -8,11 +8,7 @@ import VectorLayer from "ol/layer/Vector";
 import VectorSource from "ol/source/Vector";
 import KML from "ol/format/KML";
 import {
-  centerSyle as centerStyle,
-  towerStyle,
-  departureStyle,
-  approachStyle,
-  centerSyle,
+  getStyle,
 } from "../../tools/MapTools";
 import { createClient } from "@supabase/supabase-js";
 
@@ -75,7 +71,7 @@ const MapComponent = () => {
       initialMap.addLayer(
         new VectorLayer({
           source: vectorSource,
-          style: departureStyle,
+          style: getStyle,
         })
       );
     });
