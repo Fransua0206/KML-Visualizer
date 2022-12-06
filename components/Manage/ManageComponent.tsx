@@ -50,7 +50,7 @@ const ManageComponent = () => {
   };
   return (
     <>
-      <div className="flex flex-row">
+      <div className="flex flex-col md:flex-row">
         {/* Remote file manager */}
         {(ready && (
           <div className="flex flex-col ml-2">
@@ -61,7 +61,7 @@ const ManageComponent = () => {
           </div>
         )) || <h1>Cargando</h1>}
         {/* Shape color Selector */}
-        <div className="flex flex-col ml-10 w-52 h-20">
+        <div className="flex flex-col ml-2 mt-5 w-52 h-20 md:ml-10 md:mt-0">
           <h1 className="font-semibold text-2xl mb-2">Shape color selection</h1>
           <select onChange={setShapeColor} name="Colors">
             <option value="none" selected disabled hidden>Select an option</option>
