@@ -6,7 +6,7 @@ import Style from "ol/style/Style";
 
 const fillOpacity = "0.2";
 
-export const getStyle = (feature: any) => {
+export const getShapeStyle = (feature: any) => {
   const selectedColor = window.localStorage.getItem("shape-color");
 
   switch (selectedColor) {
@@ -66,4 +66,13 @@ export const getStyle = (feature: any) => {
       });
       return [defaultStyle];
   }
+};
+
+export const getMapStyle = (): string => {
+  const selectedMap = window.localStorage.getItem("map-style");
+
+  return (
+    selectedMap ||
+    "https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/argenmap_oscuro@EPSG%3A3857@png/{z}/{x}/{-y}.png"
+  );
 };
