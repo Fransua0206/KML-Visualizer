@@ -8,7 +8,8 @@ import VectorLayer from "ol/layer/Vector";
 import VectorSource from "ol/source/Vector";
 import KML from "ol/format/KML";
 import {
-  getStyle,
+  getMapStyle,
+  getShapeStyle,
 } from "../../tools/MapTools";
 import { createClient } from "@supabase/supabase-js";
 
@@ -52,7 +53,7 @@ const MapComponent = () => {
       layers: [
         new TileLayer({
           source: new XYZ({
-            url: "https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/argenmap_oscuro@EPSG%3A3857@png/{z}/{x}/{-y}.png",
+            url: getMapStyle(),
           }),
         }),
       ],
@@ -71,7 +72,7 @@ const MapComponent = () => {
       initialMap.addLayer(
         new VectorLayer({
           source: vectorSource,
-          style: getStyle,
+          style: getShapeStyle,
         })
       );
     });
