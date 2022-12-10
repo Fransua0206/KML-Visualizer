@@ -82,10 +82,10 @@ const ManageComponent = () => {
   };
   return (
     <>
-      <div className="flex flex-col md:flex-row">
+      <div className="flex flex-col ml-2 md:flex-row">
         {/* Remote file manager */}
         {(ready && (
-          <div className="flex flex-col ml-2">
+          <div className="flex flex-col w-72 h-fit p-2">
             <h1 className="font-semibold text-2xl mb-2">Manage Remote Files</h1>
             {foundFiles.map((file, index) => {
               return <ItemList key={index} item={file} />;
@@ -93,7 +93,7 @@ const ManageComponent = () => {
           </div>
         )) || <h1>Cargando</h1>}
         {/* Shape color Selector */}
-        <div className="flex flex-col ml-2 mt-5 w-52 h-20 md:ml-10 md:mt-0">
+        <div className="flex flex-col ml-2 mt-5 w-72 h-fit p-2 md:ml-10 md:mt-0">
           <h1 className="font-semibold text-2xl mb-2">Shape color selection</h1>
           <select onChange={setShapeColor} name="Colors">
             <option value="none" selected disabled hidden>
@@ -109,7 +109,7 @@ const ManageComponent = () => {
           </select>
         </div>
         {/* Map style selector */}
-        <div className="flex flex-col ml-2 mt-5 w-52 h-20 md:ml-10 md:mt-0">
+        <div className="flex flex-col ml-2 mt-5 w-72 h-fit p-2 md:ml-10 md:mt-0">
           <h1 className="font-semibold text-2xl mb-2">Map style selector</h1>
           <select onChange={setMapStyle} name="Map">
             {/* Placeholder */}
@@ -151,6 +151,7 @@ const ItemList = ({ item }: ItemProps) => {
       <BiTrash
         className="ml-2 hover:cursor-pointer"
         size={40}
+        color="#E93434"
         onClick={() => {
           deleteFile(item);
         }}
