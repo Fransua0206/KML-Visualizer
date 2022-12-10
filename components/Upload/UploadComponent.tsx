@@ -36,8 +36,9 @@ const UploadComponent = () => {
     setFile(null);
   };
   return (
-    <section className="flex flex-col">
+    <section className="flex flex-col m-5">
       <input
+      className=""
         type={"file"}
         ref={fileInput}
         onChange={handleChange}
@@ -45,9 +46,8 @@ const UploadComponent = () => {
       />
       {file && (
         <>
-          <h1>{file.name} esta listo para ser subido al servidor!</h1>
           <button
-            className="bg-green-600 w-36 rounded-xl p-2"
+            className="bg-green-600 w-28 text-center rounded-2xl p-2 mt-5"
             onClick={uploadFile}
           >
             Subir Archivo
