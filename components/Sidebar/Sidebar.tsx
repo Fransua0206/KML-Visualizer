@@ -1,9 +1,8 @@
 import React, { ReactElement } from "react";
-import { FiUpload } from "react-icons/fi";
-import { TbWorld } from "react-icons/tb";
-import { BiCog } from 'react-icons/bi'
+import { MdUploadFile } from 'react-icons/md'
+import { BiCog } from "react-icons/bi";
+import { GiWorld } from "react-icons/gi";
 import Link from "next/link";
-import { IconType } from "react-icons";
 
 const iconProps = {
   size: 40,
@@ -12,9 +11,9 @@ const iconProps = {
 
 const Sidebar = () => {
   return (
-    <div className="flex w-16 bg-blue-900 justify-start items-center p-2 flex-col">
-      <SidebarIcon icon={<TbWorld {...iconProps} />} link="/" />
-      <SidebarIcon icon={<FiUpload {...iconProps} />} link="/upload" />
+    <div className="flex w-16 bg-black justify-start items-center p-2 flex-col">
+      <SidebarIcon icon={<GiWorld {...iconProps} />} link="/" />
+      <SidebarIcon icon={<MdUploadFile {...iconProps} />} link="/upload" />
       <SidebarIcon icon={<BiCog {...iconProps} />} link="/manage" />
     </div>
   );
